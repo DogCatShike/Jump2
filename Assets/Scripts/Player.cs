@@ -27,7 +27,11 @@ public class Player : MonoBehaviour {
             }
 
             if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0)) {
-                jumpForce += 6 * dt;
+                if (jumpForce < 10) {
+                    jumpForce += 6 * dt;
+                } else {
+                    jumpForce = 10;
+                }
             }
 
             if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0)) {

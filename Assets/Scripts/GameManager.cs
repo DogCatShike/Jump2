@@ -34,9 +34,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnRestartClick() {
-        nowGround = null;
-        DestroyGround();
-        GroundPos = new Vector3(0, -1, 0);
+        ClearGround();
 
         gameOver.SetActive(false);
         player.transform.position = Vector3.zero;
@@ -80,5 +78,16 @@ public class GameManager : MonoBehaviour {
             }
 
         }
+    }
+
+    public void ClearGround() {
+        nowGround = null;
+
+        for (int i = grounds.Count - 1; i >= 0; i--) {
+            Destroy(grounds[i]);
+        }
+        grounds.Clear();
+
+        GroundPos = new Vector3(0, -1, 0);
     }
 }
