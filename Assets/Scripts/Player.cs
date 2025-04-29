@@ -59,6 +59,14 @@ public class Player : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Ground") {
+            bool isNewGround = GameManager.instance.IsNewGround(collision.gameObject);
+
+            GameManager.instance.DestroyGround();
+        }
+    }
+
+    void OnCollisionStay(Collision collision) {
+        if (collision.gameObject.tag == "Ground" && jumpTimes != 1) {
             Reset();
         }
     }
